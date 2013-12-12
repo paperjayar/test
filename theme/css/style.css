@@ -10,8 +10,13 @@ padding-bottom: 40px;
 	height: 127px;
 	margin: 0px auto;
 }
-
 a:hover, a:visited, a:link, a:active
 {
     text-decoration: none;
+}
+a.bigger {
+	margin:3px;
+	size:2em;
+	color:blue !important; 
+	font-weight: bold;
 }

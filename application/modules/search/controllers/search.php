@@ -39,9 +39,9 @@ class Search extends MY_Controller{
             redirect($_SERVER['HTTP_REFERER']);
         }
     }
-    function name($term='',$offset = 0){
-        if($this->input->post('name') != '') {
-            $term = $this->input->post('name');
+    function name($name = '',$term='',$offset = 0){
+        if($name != '') {
+            $term = $name;
         }
         if($term != '') {
             $this->load->library('pagination');
@@ -53,9 +53,9 @@ class Search extends MY_Controller{
             $data['result'] = $this->items_model->search($term,'name','default',$config['per_page'],$offset);
             $data['per_page'] = $config['per_page'];
             $data['total_rows'] = $config['total_rows'];
-            $this->template->load('page', 'search_result',$data);
+            $this->template->load('page','search_result',$data);
         } else {
-            $this->template->load('page', 'search_by_name');
+            $this->load->view('search_by_name');
         }
     }
     function site($term='',$offset = 0){
@@ -95,7 +95,7 @@ class Search extends MY_Controller{
             $this->template->load('page', 'search_result',$data);
         } else {
             $data['tags'] = $this->tags_model->get_some('','items_tag',true);
-            $this->template->load('page', 'search_by_tags',$data);
+            $this->load->view('search_by_tags',$data);
         }
     }
     function date($offset = 0){
